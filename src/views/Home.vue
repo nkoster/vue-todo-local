@@ -9,7 +9,6 @@
 /* eslint-disable */
 import Todos from '../components/Todos';
 import AddTodo from '../components/AddTodo';
-import axios from 'axios';
 import uuid from 'uuid/v1';
 
 export default {
