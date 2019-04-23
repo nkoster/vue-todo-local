@@ -41,12 +41,23 @@ export default {
       this.saveTodos()
     },
     addTodo(newTodo) {
-      const { title, completed } = newTodo;
-      this.todos = [ {
-        id: uuid(),
-        title,
-        completed
-      }, ...this.todos ];
+    const { title, completed } = newTodo;
+      if (this.todos) {
+      this.todos.unshift(
+        {
+          id: uuid(),
+          title,
+          completed
+        })
+      } else {
+        this.todos = [
+          {
+            id: uuid(),
+            title,
+            completed
+          }
+        ]
+      }
       this.saveTodos()
     },
     saveTodos() {
@@ -55,7 +66,11 @@ export default {
     }
   },
   created() {
-    this.todos = JSON.parse(localStorage.getItem('mystore'))
+    try {
+      this.todos = JSON.parse(localStorage.getItem('mystore'));
+    } catch(e) {
+      localStorage.removeItem('mystore');
+    }
   }
 }
 </script>
