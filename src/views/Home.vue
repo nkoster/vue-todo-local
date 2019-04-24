@@ -1,12 +1,14 @@
 <template>
   <div>
     <AddTodo v-on:add-todo="addTodo" />
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
+    <Todos
+     v-bind:todos="todos"
+     v-on:save-todos="saveTodos"
+     v-on:del-todo="deleteTodo"/>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import Todos from '../components/Todos';
 import AddTodo from '../components/AddTodo';
 import uuid from 'uuid/v1';
@@ -24,9 +26,7 @@ export default {
     }
   },
   mounted() {
-    console.log('Mounting local storage...')
     if (localStorage.getItem('mystore')) {
-      console.log('Mounting mystore')
       try {
         this.mystore = JSON.parse(localStorage.getItem('mystore'));
       } catch(e) {
