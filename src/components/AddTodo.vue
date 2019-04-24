@@ -25,7 +25,6 @@ export default {
                     title: this.title,
                     completed: false
                 }
-                // send to parent
                 this.$emit('add-todo', newTodo);
                 this.title = ''
             }
